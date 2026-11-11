@@ -22,5 +22,53 @@ package implementations;
  */
 public class MyDLLNode
 {
+	 // The value stored inside this node
+    private String element;
+    
+    // Predecessor and Successor are defined above as pred and succ
 
+    // The node before this one
+    private MyDLLNode pred;
+
+    // The node after this one
+    private MyDLLNode succ;
+
+    // Constructor to create a new node
+    public MyDLLNode(String element, MyDLLNode pred, MyDLLNode succ) {
+        this.element = element;
+        this.pred = pred;
+        this.succ = succ;
+    }
+
+    // Returns the stored element
+    public String getElement() {
+        return this.element;
+    }
+
+    // Returns the previous node
+    public MyDLLNode getPred() {
+        return this.pred;
+    }
+
+    // Returns the next node
+    public MyDLLNode getSucc() {
+        return this.succ;
+    }
+
+    // Replaces the element and returns the old value
+    public String setElement(String element) {
+        String oldElement = this.element;
+        this.element = element;
+        return oldElement;
+    }
+
+    // Updates the previous node
+    public void setPred(MyDLLNode pred) {
+        this.pred = pred;
+    }
+
+    // Updates the next node
+    public void setSucc(MyDLLNode succ) {
+        this.succ = succ;
+    }
 }
