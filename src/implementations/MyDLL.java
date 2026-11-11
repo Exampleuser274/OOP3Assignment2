@@ -317,12 +317,40 @@ public class MyDLL implements ListADT
 	    return removedElement;
 	}
 
+	/**
+	 * Removes the first occurrence of the specified element from the list
+	 * Loops through the list until the a matching element is found
+	 * 
+	 * @param toRemove The string element to remove from the list
+	 * @return The Removed Element. or null if that element isnt found
+	 * @throws NullPointerException if the element being searched is null
+	 */
 	@Override
 	public String remove(String toRemove) throws NullPointerException {
 		
 		if (toRemove == null) {
 			throw new NullPointerException();
 		}
+		
+		// Start at the first node
+		MyDLLNode current = this.head;
+		
+		// Loop through the list to find the element 
+		for (int i = 0; i < size; i++) {
+			
+			// Check to see if the current element matches the one we want to remove.
+			if (current.getElement().equals(toRemove)) {
+				
+				// We can use our existing method to remove the element 
+				// The head, tail, and middle section removal logic is already in the method from earlier as well
+				return this.remove(i);
+			}
+			//Moves to the next node 
+			current = current.getSucc();
+		}
+		
+		// REturn null if the element is not found
+		return null;
 	}
 
 	/**
@@ -376,20 +404,73 @@ public class MyDLL implements ListADT
 	    return this.size == 0;
 	}
 
+	/**
+	 * Checks weather the specified element exists in the list
+	 * Loops through the list until a matching element is found
+	 * 
+	 * @param toFind The String element to search for
+	 * @return True if the element is found, or false if it isnt
+	 *  @throws NullPointerException If the element being searched for is null.
+	 */
 	@Override
 	public boolean contains(String toFind) throws NullPointerException {
 		
 		if (toFind == null) {
 			throw new NullPointerException();
 		}
+		
+		// Start at the first node
+		MyDLLNode current = this.head;
+				
+		// Loop through the list to find the element 
+		for (int i = 0; i < size; i++) {
+					
+			// Check to see if the current element matches what we are looking for.
+			if (current.getElement().equals(toFind)) {
+				return true;
+			}
+			
+			// moves to the next node in the list
+			current = current.getSucc();
+				
+		}
+		
+		// Return false if the element cant be found
+		return false;
 	}
 
+	/**
+	 * Searched the list for the first occurrence of a specified element
+	 * Loops through the list until a matching element is found
+	 * 
+	 * @param toFind The string element to search for
+	 * @return The index of the first matching element, or -1 if not found
+	 * @throws NullPointerException if the element being searched for is null
+	 */
 	@Override
 	public int indexOf(String toFind) throws NullPointerException {
 		
 		if (toFind == null) {
 			throw new NullPointerException();
 		}
+		
+		// Start at the first node
+		MyDLLNode current = this.head;
+		
+		// Loop through the list to find the element 
+		for (int i = 0; i < size; i++) {
+			// Check to see if the current element matches what we are looking for.
+			if (current.getElement().equals(toFind)) {
+				// return the index of the element if we find it
+				return i;
+			}
+			
+			// Move to the next node
+			current = current.getSucc();
+		}
+		
+		// Return -1 if the element isnt found
+		return -1;
 	}
 
 	@Override
