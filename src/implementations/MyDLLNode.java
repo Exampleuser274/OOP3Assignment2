@@ -33,41 +33,73 @@ public class MyDLLNode
     // The node after this one
     private MyDLLNode succ;
 
-    // Constructor to create a new node
+    /**
+     * Creates a new node with an element and references
+     * to its previous and next nodes.
+     *
+     * @param element The String value stored in the node.
+     * @param pred The previous node, or null if there is none.
+     * @param succ The next node, or null if there is none.
+     */
     public MyDLLNode(String element, MyDLLNode pred, MyDLLNode succ) {
         this.element = element;
         this.pred = pred;
         this.succ = succ;
     }
 
-    // Returns the stored element
+    /**
+     * Returns the element stored in this node.
+     *
+     * @return The String element stored in the node.
+     */
     public String getElement() {
         return this.element;
     }
 
-    // Returns the previous node
+    /**
+     * Returns the previous node in the list.
+     *
+     * @return The predecessor node, or null if there is none.
+     */
     public MyDLLNode getPred() {
         return this.pred;
     }
 
-    // Returns the next node
+    /**
+     * Returns the next node in the list.
+     *
+     * @return The successor node, or null if there is none.
+     */
     public MyDLLNode getSucc() {
         return this.succ;
     }
 
-    // Replaces the element and returns the old value
+    /**
+     * Replaces the element stored in this node with a new element.
+     *
+     * @param element The new String element to store.
+     * @return The original element before it was replaced.
+     */
     public String setElement(String element) {
         String oldElement = this.element;
         this.element = element;
         return oldElement;
     }
 
-    // Updates the previous node
+    /**
+     * Updates the reference to the previous node.
+     *
+     * @param pred The new predecessor node, or null if there is none.
+     */
     public void setPred(MyDLLNode pred) {
         this.pred = pred;
     }
 
-    // Updates the next node
+    /**
+     * Updates the reference to the next node.
+     *
+     * @param succ The new successor node, or null if there is none.
+     */
     public void setSucc(MyDLLNode succ) {
         this.succ = succ;
     }

@@ -224,7 +224,7 @@ public class MyDLL implements ListADT
 	public String get(int index) throws IndexOutOfBoundsException {
 	
 	    // Check if the index is within the list
-		// We have to include the last element in the list, so we use >= this time
+		// We have to include the last element in the list, whoch would be size - 1. so >= size is out of bounds
 	    if (index < 0 || index >= size) {
 	        throw new IndexOutOfBoundsException();
 	    }
