@@ -204,12 +204,36 @@ public class MyDLL implements ListADT
 	    return true;
 	}
 
+
+	/**
+	 * Adds all elements from another list to the end of this list.
+	 * Uses an iterator to go through the supplied list and add
+	 * each element in its original order.
+	 *
+	 * @param toAdd The list containing the elements to add.
+	 * @return True when the elements have been successfully added.
+	 * @throws NullPointerException If the supplied list is null.
+	 */
 	@Override
 	public boolean addAll(ListADT toAdd) throws NullPointerException {
-		
-		if (toAdd == null) {
-			throw new NullPointerException();
-		}
+	
+	    // Check if the supplied list is null
+	    if (toAdd == null) {
+	        throw new NullPointerException();
+	    }
+	
+	    // Create an iterator for the supplied list
+	    Iterator current = toAdd.iterator();
+	
+	    // Loop through the supplied list while elements remain
+	    while (current.hasNext()) {
+	
+	        // Get the next element and add it to the end of our list
+	        this.add(current.next());
+	    }
+	
+	    // Return true after adding the elements
+	    return true;
 	}
 
 	/**
@@ -328,6 +352,7 @@ public class MyDLL implements ListADT
 	@Override
 	public String remove(String toRemove) throws NullPointerException {
 		
+		// make sure the value we are trying to remove isnt null first
 		if (toRemove == null) {
 			throw new NullPointerException();
 		}
@@ -415,6 +440,7 @@ public class MyDLL implements ListADT
 	@Override
 	public boolean contains(String toFind) throws NullPointerException {
 		
+		// Make sure the String isnt null first.
 		if (toFind == null) {
 			throw new NullPointerException();
 		}
@@ -450,6 +476,7 @@ public class MyDLL implements ListADT
 	@Override
 	public int indexOf(String toFind) throws NullPointerException {
 		
+		// make sure the String isnt null first
 		if (toFind == null) {
 			throw new NullPointerException();
 		}
@@ -473,18 +500,131 @@ public class MyDLL implements ListADT
 		return -1;
 	}
 
+	/**
+	 * Copies the elements from the list into a string array
+	 * Loops through the list from head to tail, keeping the elements in order
+	 * creates a new array if the provided array is too small
+	 * 
+	 * @param toHold The String array that will hold the lists elements
+	 * @return The array containing the elements from the list.
+	 * @throws NullPointerException if the provided array is null
+	 */
 	@Override
 	public String[] toArray(String[] toHold) throws NullPointerException {
 		
+		// Make sure the provided array isnt null first
 		if (toHold == null) {
 			throw new NullPointerException();
 		}
+		
+		// if the provided array is too small, we create a new array to store everything
+		if (toHold.length < size) {
+			toHold = new String[size];
+		}
+		
+		// Start at the first node
+		MyDLLNode current = this.head;
+		
+		// Loop through the list and copy each element
+		for (int i = 0; i < size; i++) {
+			
+			// Store the current nodes element in the array
+			toHold[i] = current.getElement();
+			
+			// Then move to the next node
+			current = current.getSucc();
+			// We dont leave the loop till all the elements have been copied
+		}
+		
+		// Return the new array containing all the elements we looped through
+		return toHold;
 	}
 
+	/**
+	 * Creates an iterator to go through the list elements in order.
+	 * Each iterator uses its own snapshot of the list.
+	 *
+	 * @return A new iterator for the current list.
+	 */
 	@Override
 	public Iterator iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DLLIterator();
 	}
-    
+	
+	/**
+	 * An inner class that allows us to iterate through the list.
+	 * Stores a copy of the elements so changes to the original list
+	 * do not affect the iterator.
+	 */
+	private class DLLIterator implements Iterator {
+	
+	    // Array that stores a copy of the list elements
+	    private String[] elements;
+	
+	    // Keeps track of the next element to return
+	    private int position;
+	
+	    /**
+	     * Creates an iterator by copying the current list elements
+	     * into a String array.
+	     */
+	    public DLLIterator() {
+	
+	        // Create an array based on the current list size
+	        elements = new String[size];
+	
+	        // Start at the first node
+	        MyDLLNode current = head;
+	
+	        // Loop through the list and copy each element into the array
+	        for (int i = 0; i < size; i++) {
+	
+	            // Store the current node's element in the array
+	            elements[i] = current.getElement();
+	
+	            // Move to the next node
+	            current = current.getSucc();
+	        }
+	
+	        // Start the iterator at the first position
+	        position = 0;
+	    }
+	
+	    /**
+	     * Checks whether the iterator has more elements.
+	     *
+	     * @return True if another element exists, or false otherwise.
+	     */
+	    @Override
+	    public boolean hasNext() {
+	
+	        // Check if the current position is inside the array
+	        return position < elements.length;
+	    }
+	
+	    /**
+	     * Returns the next element from the iterator.
+	     *
+	     * @return The next String element.
+	     * @throws NoSuchElementException If there are no more elements.
+	     */
+	    @Override
+	    public String next() throws NoSuchElementException {
+	
+	        // Check if we have reached the end of the array
+	        if (!hasNext()) {
+	            throw new NoSuchElementException();
+	        }
+	
+	        // Save the element at the current position
+	        String element = elements[position];
+	
+	        // Move to the next position
+	        position++;
+	
+	        // Return the element
+	        return element;
+	    }
+	}
+
 }
