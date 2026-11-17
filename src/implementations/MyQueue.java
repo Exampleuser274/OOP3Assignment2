@@ -27,5 +27,71 @@ import utilities.QueueADT;
  */
 public class MyQueue implements QueueADT
 {
+
+	@Override
+	public void enqueue(String toAdd) throws NullPointerException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String dequeue() throws EmptyQueueException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String peek() throws EmptyQueueException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void dequeueAll() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean contains(String toFind) throws NullPointerException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int search(String toFind) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Iterator iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean equals(QueueADT that) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public String[] toArray(String[] holder) throws NullPointerException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
     
 }
