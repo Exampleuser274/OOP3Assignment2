@@ -1,0 +1,12 @@
+// test for parser class from Ren Macatuno
+
+()
+(
+)
+><
+<>
+([{}])
+Hello world!
+[]
+[
+{}
