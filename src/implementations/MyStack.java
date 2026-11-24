@@ -154,17 +154,19 @@ public class MyStack implements StackADT
 		int index = 0;
 		int found = -1;
 		Iterator iterator = this.iterator();
+		// Search through the elements in the stack.
 		while(iterator.hasNext()) {
 			String current = iterator.next();
-			if (current==toFind) {
+			if (current.equals(toFind)) {
 				found = index;
 			}
 			index++;
 		}
+		 // Return the position relative to the top of the stack.
 		if(found!=-1) {
 			return max-found;
 		}
-		else return found;
+		else return found; 
 
 	}
 	/**
