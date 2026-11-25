@@ -28,9 +28,9 @@ import utilities.StackADT;
 public class MyStack implements StackADT
 {	
 	//size of stack
-	int size;
+	private int size;
 	//internal ArrayList structure (not java default)
-	MyArrayList internalArrayList;
+	private MyArrayList internalArrayList;
 	/**
 	 * Creates new Stack object and sets size to 0
 	 */
@@ -235,7 +235,7 @@ public class MyStack implements StackADT
 			}
 			thisCurrent = thisIterator.next();
 			thatCurrent = thatIterator.next();
-			if(thisCurrent!=thatCurrent) {
+			if (!thisCurrent.equals(thatCurrent)) {
 				return false;
 			}
 		}
